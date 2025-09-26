@@ -1,9 +1,16 @@
-// Reemplaza con tu ID de Google Sheet y el nombre de la hoja
-const sheetID = "TU_ID_AQUI";
-//const sheetName = "4_Science"; // usa el nombre de tu pestaña
-const urlJSON = `https://docs.google.com/spreadsheets/d/18MrE2FSIqQQYP5CUrDDbc_RKExfxlXG0TxiuPHNt6iU/gviz/tq?tqx=out:json&sheet=`;
+// ID de tu Google Sheet
+const sheetID = "18MrE2FSIqQQYP5CUrDDbc_RKExfxlXG0TxiuPHNt6iU";
+const urlJSON = `https://docs.google.com/spreadsheets/d/${sheetID}/gviz/tq?tqx=out:json&sheet=`;
 
-document.getElementById("btnBuscar").addEventListener("click", buscarAlumno);
+// Evento de búsqueda
+document.getElementById("btnBuscar").addEventListener("click", () => {
+  const sheetName = document.getElementById("clase").value;
+  if (!sheetName) {
+    alert("Selecciona un grado y clase primero");
+    return;
+  }
+  buscarAlumno(sheetName);
+});
 
 async function buscarAlumno(sheetName) {
   const codigo = document.getElementById("codigo").value.trim();
@@ -12,19 +19,21 @@ async function buscarAlumno(sheetName) {
   try {
     const res = await fetch(urlJSON + sheetName);
     let text = await res.text();
+    console.log(text)
 
-    // Limpiar el JSON que devuelve Google
+    // Google envuelve el JSON, hay que limpiarlo
     text = text.substr(47).slice(0, -2);
     const json = JSON.parse(text);
 
     // Encabezados
     const headers = json.table.cols.map(c => c.label);
-    // Filas
+    // Todas las filas
     const filas = json.table.rows.map(r => r.c.map(c => c ? c.v : ""));
+    // Subheader = fila 0 (pesos)
     const subheader = filas[0];
+    // Buscar alumno desde fila 1 en adelante
+    const alumno = filas.find((r, i) => i > 0 && r[0] == codigo);
 
-    // Buscar alumno por código (columna 0)
-    const alumno = filas.find(r => r[0] == codigo);
     const cont = document.getElementById("resultado");
     cont.innerHTML = "";
 
@@ -33,15 +42,21 @@ async function buscarAlumno(sheetName) {
       return;
     }
 
-    // Mostrar resultados
     let total = 0;
-    let html = "<h3>Resultados:</h3><ul>";
-    for (let i = 1; i < headers.length -1 ; i++) {
-      html += `<li><strong>${headers[i]}:</strong> ${alumno[i]} / ${subheader[i]} </li>`;
-      total += parseFloat(alumno[i]) || 0;
+    let totalPosible = 0;
+    let html = `<h3>Resultados de ${alumno[1]} (Código: ${codigo})</h3><ul>`;
+
+    for (let i = 2; i < headers.length; i++) {
+      const tarea = headers[i];
+      const peso = subheader[i];
+      const nota = alumno[i];
+      html += `<li><strong>${tarea}:</strong> ${nota} / ${peso}</li>`;
+      total += parseFloat(nota) || 0;
+      totalPosible += parseFloat(peso) || 0;
     }
+
     html += "</ul>";
-    html += `<p><strong>Total Calificacion:</strong> ${total} / 100 </p>`;
+
     cont.innerHTML = html;
 
   } catch (e) {

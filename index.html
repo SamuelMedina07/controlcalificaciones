@@ -1,18 +1,58 @@
 <!DOCTYPE html>
 <html lang="es">
 <head>
-  <meta charset="UTF-8" />
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Notas de Alumnos</title>
-  <link rel="stylesheet" href="style.css">
+  <meta charset="UTF-8">
+  <title>Consulta de Notas</title>
+   <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+   <link href="style.css" rel="stylesheet">
+  <!-- <style>
+    body { font-family: Arial, sans-serif; background:#f4f6f9; }
+    .contenedor {
+      max-width: 700px; margin:50px auto; background:white;
+      padding:30px; border-radius:15px;
+      box-shadow:0 6px 12px rgba(0,0,0,0.1);
+      text-align:center;
+    }
+    input, select {
+      padding:10px; font-size:16px; margin:5px; width:60%;
+      border:1px solid #ccc; border-radius:8px;
+    }
+    button {
+      padding:10px 20px; font-size:16px; border:none;
+      background:#0077cc; color:white; border-radius:8px; cursor:pointer;
+    }
+    button:hover { background:#005fa3; }
+    #resultado { margin-top:20px; text-align:center; }
+    #resultado ul { list-style:none; padding:0; }
+    #resultado li {
+      background:#f9f9f9; padding:8px; margin:5px 0; border-radius:6px;
+    }
+  </style> -->
 </head>
-<body>
-  <div class="container">
-    <h1>Consulta de Acumulados Reading 4th</h1>
+<body class="bg-emerald-600 text-white">
+  <div class="contenedor">
+    <h1 class="text-3xl font-bold underline">Consulta de Notas</h1>
+    <h2 class="text-red-500">Hola</h2>
+
+   <select id="clase">
+  <option value="">Selecciona grado y clase</option>
+  <optgroup label="4th">
+    <option value="4_Science">4th - Science</option>
+    <option value="4_Reading">4th - Reading</option>
+  </optgroup>
+  <optgroup label="5th">
+    <option value="5_Science">5th - Science</option>
+  </optgroup>
+</select>
+
+
     <input type="text" id="codigo" placeholder="Ingresa tu código">
-    <button onclick="buscarAlumno('4_Reading')">Buscar</button>
+    <button id="btnBuscar">Buscar</button>
+
     <div id="resultado"></div>
   </div>
+
   <script src="script.js"></script>
 </body>
 </html>
+
