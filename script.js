@@ -13,6 +13,8 @@ document.getElementById("btnBuscar").addEventListener("click", () => {
 });
 
 async function buscarAlumno(sheetName) {
+  const select = document.getElementById("clase");
+  const textoSeleccionado = select.options[select.selectedIndex].text;
   const codigo = document.getElementById("codigo").value.trim();
   if (!codigo) return alert("Ingresa tu código");
 
@@ -44,13 +46,13 @@ async function buscarAlumno(sheetName) {
 
     let total = 0;
     let totalPosible = 0;
-    let html = `<h3>Resultados de ${alumno[1]} (Código: ${codigo})</h3><ul>`;
+    let html = `<h3 class="text-2xl text-justify">${alumno[1]} (Código: ${codigo}) para la clase de ${textoSeleccionado}</h3><ul class="space-y-2 text-2xl">`;
 
     for (let i = 2; i < headers.length; i++) {
       const tarea = headers[i];
       const peso = subheader[i];
       const nota = alumno[i];
-      html += `<li><strong>${tarea}:</strong> ${nota} / ${peso}</li>`;
+      html += `<li>${tarea}: ${nota} / ${peso}</li>`;
       total += parseFloat(nota) || 0;
       totalPosible += parseFloat(peso) || 0;
     }

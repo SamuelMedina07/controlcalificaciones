@@ -1,2 +1,10 @@
+@import url('https://fonts.googleapis.com/css2?family=Arvo:wght@700&display=swap');
+@import url('https://fonts.googleapis.com/css2?family=Geist&display=swap');
 
+h1,h3 {
+    font-family: 'Arvo', serif;
+}
 
+body {
+    font-family: 'Geist', sans-serif;
+}
