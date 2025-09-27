@@ -7,34 +7,25 @@
    <script src="https://cdn.jsdelivr.net/npm/@tailwindplus/elements@1" type="module"></script>
    <link href="style.css" rel="stylesheet">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <!-- <style>
-    body { font-family: Arial, sans-serif; background:#f4f6f9; }
-    .contenedor {
-      max-width: 700px; margin:50px auto; background:white;
-      padding:30px; border-radius:15px;
-      box-shadow:0 6px 12px rgba(0,0,0,0.1);
-      text-align:center;
-    }
-    input, select {
-      padding:10px; font-size:16px; margin:5px; width:60%;
-      border:1px solid #ccc; border-radius:8px;
-    }
-    button {
-      padding:10px 20px; font-size:16px; border:none;
-      background:#0077cc; color:white; border-radius:8px; cursor:pointer;
-    }
-    button:hover { background:#005fa3; }
-    #resultado { margin-top:20px; text-align:center; }
-    #resultado ul { list-style:none; padding:0; }
-    #resultado li {
-      background:#f9f9f9; padding:8px; margin:5px 0; border-radius:6px;
-    }
-  </style> -->
 </head>
-<body class="bg-[#5a9a4a] text-white space-y-5 relative w-full max-w-xl mx-auto">
-      <h1 class="text-4xl text-center my-6">Consulta de Notas</h1>
+<header class="bg-white shadow-md">
+  <nav class="flex items-center justify-between px-4 py-3 sm:px-6">
+    <a class="text-lg font-semibold text-teal-700">Brisas de Jucutuma</a>
+    
+    <img 
+      src="https://tse1.mm.bing.net/th/id/OIP.8Hd5bIbn0DY3Su9YSr1HygHaHi?rs=1&pid=ImgDetMain&o=7&rm=3" 
+      alt="Logo" 
+      class="h-10 w-auto"
+    >
+    
+    <a class="text-base text-gray-700 sm:text-lg">Teacher Samuel Ernesto</a>
+  </nav>
+</header>
+
+<body class="bg-[#5a9a4a] text-white px-6 py-6 space-y-5 relative w-full max-w-2xl mx-auto">
+      <h1 class="text-4xl text-pretty text-center my-6">Consulta de Notas Parcial IV 2025</h1>
   <div class="contenedor bg-white p-8 rounded-lg shadow-lg text-black text-center space-y-8">
-   <select id="clase" class="border-1 rounded-lg p-3 text-black">
+   <select id="clase" class="border-1 w-full p-3 text-black">
   <option value="">Selecciona grado y clase</option>
   <optgroup label="4th">
     <option value="4_Science">4th - Science</option>
@@ -48,20 +39,17 @@
  
 
 <div class="relative w-full max-w-xl mx-auto bg-white rounded-full">
-  <input placeholder="Ingresa tu código de alumno" class="rounded-full w-full text-black h-16 bg-transparent py-2 pl-8 pr-32 outline-none border-2 border-gray-100 shadow-md hover:outline-none focus:ring-teal-200 focus:border-teal-200" type="text" name="query" id="codigo">
-  <button type="submit" id="btnBuscar" class="absolute inline-flex items-center h-10 px-4 py-2 text-sm text-white transition duration-150 ease-in-out rounded-full outline-none right-3 top-3 bg-teal-600 sm:px-6 sm:text-base sm:font-medium hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+  <input placeholder="Código de alumno" class="rounded-full w-full text-black h-16 bg-transparent py-2 pl-8 pr-32 outline-none border-2 border-gray-100 shadow-md hover:outline-none focus:ring-teal-200 focus:border-teal-200" type="text" name="query" id="codigo">
+  <button type="submit" id="btnBuscar" class="absolute inline-flex items-center h-10 px-4 py-2 text-white transition duration-150 ease-in-out rounded-full outline-none right-3 top-3 bg-teal-600 sm:px-6 sm:text-base sm:font-medium hover:bg-teal-700 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
     <svg class="-ml-0.5 sm:-ml-1 mr-2 w-4 h-4 sm:h-5 sm:w-5" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24" stroke="currentColor">
       <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"></path>
     </svg>
-    Search
+    Buscar
   </button>
 </div>
- <!--    <input type="text" id="codigo" placeholder="Ingresa tu código">
-    <button id="btnBuscar">Buscar</button> -->
-
-    
+  
   </div>
-  <div class="text-center space-y-2" id="resultado"></div>
+  <div class="text-center space-y-4" id="resultado"></div>
 
   <script src="script.js"></script>
 </body>

@@ -21,8 +21,7 @@ async function buscarAlumno(sheetName) {
   try {
     const res = await fetch(urlJSON + sheetName);
     let text = await res.text();
-    console.log(text)
-
+  
     // Google envuelve el JSON, hay que limpiarlo
     text = text.substr(47).slice(0, -2);
     const json = JSON.parse(text);
@@ -57,7 +56,10 @@ async function buscarAlumno(sheetName) {
       totalPosible += parseFloat(peso) || 0;
     }
 
-    html += "</ul>";
+   html += `</ul>
+  <button onclick="limpiar();" class="h-10 px-4 py-2 text-sm text-teal-600 transition duration-150 ease-in-out rounded-full outline-none right-3 top-3 bg-[#ffffff] sm:px-6 sm:text-base sm:font-medium hover:bg-[#efefef] focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-teal-500">
+    Limpiar Pantalla
+  </button>`;
 
     cont.innerHTML = html;
 
@@ -66,3 +68,11 @@ async function buscarAlumno(sheetName) {
     alert("Error cargando los datos");
   }
 }
+ function limpiar() {
+  document.getElementById('codigo').value = "";
+  document.getElementById('clase').value = "";
+   const lista = document.getElementById('resultado');
+    while (lista.firstChild) {
+   lista.removeChild(lista.firstChild);
+    }
+ }
