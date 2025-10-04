@@ -6,5 +6,7 @@ h1,h3 {
 }
 
 body {
-    font-family: 'Geist', sans-serif;
+  font-family: 'Geist', sans-serif;
+  background: linear-gradient(to bottom left, #84cc16, #16a34a, #0f766e);
+  min-height: 100vh; /* asegura que cubra toda la altura */
 }
